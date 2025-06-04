@@ -1,0 +1,7 @@
+﻿services:
+  productsmockapi:
+    image: productsmockapi
+    build:
+      context: .
+      dockerfile: src/ProductsMockApi/Dockerfile
+
