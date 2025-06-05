@@ -1,0 +1,14 @@
+﻿version: '3.8'
+
+services:
+  productsmockapi:
+    container_name: productsmockapi
+    image: productsmockapi:latest
+    build:
+      context: .
+      dockerfile: src/ProductsMockApi/Dockerfile
+    ports:
+      - "5678:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    restart: unless-stopped

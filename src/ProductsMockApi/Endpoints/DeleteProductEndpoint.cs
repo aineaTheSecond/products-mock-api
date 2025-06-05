@@ -1,5 +1,4 @@
 using FastEndpoints;
-using ProductsMockApi.Application.Requests;
 using ProductsMockApi.Application.Responses;
 using ProductsMockApi.Application.Services.Abstractions;
 

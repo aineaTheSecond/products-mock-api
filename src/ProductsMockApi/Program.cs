@@ -1,7 +1,5 @@
-using System.Reflection;
 using FastEndpoints;
 using FastEndpoints.Swagger;
-using FluentValidation;
 using ProductsMockApi.Extensions;
 using ProductsMockApi.Middleware;
 
@@ -13,26 +11,31 @@ builder.Services.AddCors(options =>
   options.AddPolicy("AllowAll", policy =>
   {
     policy.AllowAnyOrigin()
-          .AllowAnyMethod()
-          .AllowAnyHeader();
+      .AllowAnyMethod()
+      .AllowAnyHeader();
   });
 });
 
 builder.Services.AddEndpointsApiExplorer()
-    .AddFastEndpoints(o => o.IncludeAbstractValidators = true)
-    .ConfigureSwagger()
-    .AddOptionsConfiguration(builder.Configuration)
-    .ConfigureMockApi(builder.Configuration);
+  .AddFastEndpoints(o => o.IncludeAbstractValidators = true)
+  .ConfigureSwagger()
+  .AddOptionsConfiguration(builder.Configuration)
+  .ConfigureMockApi(builder.Configuration);
 
 var app = builder.Build();
 
-app.UseDefaultExceptionHandler();
-// app.UseMiddleware<ExceptionMiddleware>();
+//app.UseDefaultExceptionHandler();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
-app.UseFastEndpoints()
-    .UseSwaggerGen()
-    .UseCors("AllowAll");
+app.UseFastEndpoints(c => c.Versioning.Prefix = "v")
+  .UseSwaggerGen()
+  .UseCors("AllowAll");
 
 app.Run();
+
+public partial class Program
+{
+}

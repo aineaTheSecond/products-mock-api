@@ -1,4 +1,3 @@
-using FastEndpoints;
 using FluentValidation;
 using ProductsMockApi.Application.Requests;
 

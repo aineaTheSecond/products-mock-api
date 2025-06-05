@@ -1,5 +1,4 @@
 using FastEndpoints;
-using Microsoft.AspNetCore.Http.HttpResults;
 using ProductsMockApi.Application.Models;
 using ProductsMockApi.Application.Requests;
 using ProductsMockApi.Application.Responses;
