@@ -62,6 +62,12 @@ ProductsMockApi.sln
 
 ---
 
+##  Clone the Repo
+
+```bash
+git clone git@github.com:aineaTheSecond/products-mock-api.git
+````
+
 ## Running Locally (Without Docker)
 
 Open the solution in your favorite IDE and hit the debug button
