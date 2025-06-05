@@ -43,14 +43,14 @@ public static class ServiceCollectionExtensions
     {
       o.DocumentSettings = s =>
           {
-          s.Title = "Products Mock Api";
-          s.Version = "v1";
-        };
+            s.Title = "Products Mock Api";
+            s.Version = "v1";
+          };
       o.SerializerSettings = s =>
           {
-          s.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-          s.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-        };
+            s.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            s.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+          };
     });
 
     return services;

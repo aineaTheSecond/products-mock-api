@@ -3,7 +3,7 @@ using ProductsMockApi.Application.Requests;
 
 namespace ProductsMockApi.Application.Validators;
 
-public class CreateProductRequestValidator: AbstractValidator<CreateProductRequest>
+public class CreateProductRequestValidator : AbstractValidator<CreateProductRequest>
 {
   public CreateProductRequestValidator()
   {
@@ -20,7 +20,7 @@ public class CreateProductRequestValidator: AbstractValidator<CreateProductReque
     RuleFor(r => r.Capacity)
       .NotEmpty()
       .WithMessage("Capacity is required");
-    
+
     RuleFor(r => r.Color)
       .NotEmpty()
       .WithMessage("Color is required")
