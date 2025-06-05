@@ -27,6 +27,60 @@ public class CreateProductEndpointTests(WebApplicationFactory<Program> factory)
     response.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest);
     body.Should().Contain("Product Name is required");
   }
+  
+  [Fact]
+  public async Task WhenColorIsLessThanThreeCharacters_ThenReturnValidationError()
+  {
+    // Arrange
+    var invalidProduct = new CreateProductRequest()
+    {
+      Color = ""
+    };  
+
+    // Act
+    var response = await _client.PostAsJsonAsync("/api/v1/products", invalidProduct);
+    var body = await response.Content.ReadAsStringAsync();
+
+    // Assert
+    response.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest);
+    body.Should().Contain("Color is too short");
+  }
+  
+  [Fact]
+  public async Task WhenPriceEqualsZero_ThenReturnValidationError()
+  {
+    // Arrange
+    var invalidProduct = new CreateProductRequest()
+    {
+      Price = 0
+    };  
+
+    // Act
+    var response = await _client.PostAsJsonAsync("/api/v1/products", invalidProduct);
+    var body = await response.Content.ReadAsStringAsync();
+
+    // Assert
+    response.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest);
+    body.Should().Contain("Product price should be greater than 0");
+  }
+  
+  [Fact]
+  public async Task WhenCapacityIsEmpty_ThenReturnValidationError()
+  {
+    // Arrange
+    var invalidProduct = new CreateProductRequest()
+    {
+      Capacity = ""
+    };  
+
+    // Act
+    var response = await _client.PostAsJsonAsync("/api/v1/products", invalidProduct);
+    var body = await response.Content.ReadAsStringAsync();
+
+    // Assert
+    response.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest);
+    body.Should().Contain("Capacity is required");
+  }
 
   [Fact]
   public async Task WhenProductIsValid_ThenCreateProduct()
